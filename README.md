@@ -18,9 +18,9 @@
 
 ## 📋 About This Project
 
-**THAI:** โปรเจคนี้เกี่ยวกับการใช้ Deep Learning ในการจำแนกเพศของคนในวิดีโอแบบเรียลไทม์โดยใช้โมดูล DNN ของ OpenCV โปรเจคนี้ใช้โมเดล Caffe ที่ผ่านการฝึกสอนมาแล้วสำหรับการตรวจจับใบหน้า และโมเดล PyTorch ที่ผ่านการฝึกสอนโดยใช้โมเดล mobilenet_v2 เพื่อจำแนกเพศ ชุดข้อมูลมาจาก Kaggle ของ saadpd (Men-Women Classification) แอปพลิเคชันนี้จับวิดีโอจากเว็บแคม ตรวจจับใบหน้า และจำแนกเพศของใบหน้าที่ตรวจพบ โดยแสดงผลลัพธ์และความมั่นใจแบบเรียลไทม์โดยใช้ Streamlit ในการปรับใช้เว็บแอปพลิเคชัน
+**THAI:** โปรเจคนี้เกี่ยวกับการใช้ Deep Learning ในการจำแนกเพศของคนแบบถ่ายรูปภาพโดยใช้โมดูล DNN ของ OpenCV โปรเจคนี้ใช้โมเดล Caffe ที่ผ่านการฝึกสอนมาแล้วสำหรับการตรวจจับใบหน้า และโมเดล PyTorch ที่ผ่านการฝึกสอนโดยใช้โมเดล mobilenet_v2 เพื่อจำแนกเพศ ชุดข้อมูลมาจาก Kaggle ของ saadpd (Men-Women Classification) แอปพลิเคชันนี้จับวิดีโอจากเว็บแคม ตรวจจับใบหน้า และจำแนกเพศของใบหน้าที่ตรวจพบ โดยแสดงผลลัพธ์และความมั่นใจโดยใช้ Streamlit ในการปรับใช้เว็บแอปพลิเคชัน
 
-**ENG:** This project is about using deep learning to classify the gender of people in real-time video feed using OpenCV's DNN module. The project utilizes a pre-trained Caffe model for face detection and a trained PyTorch model using mobilenet_v2 model to classify gender. The dataset is from saadpd's Kaggle (Men-Women Classification). The application captures video from the webcam, detects faces, and classifies the gender of the detected faces, displaying the results and confidence in real-time using streamlit to deploy the web application.
+**ENG:** This project is about using deep learning to classify the gender of people in photo feed using OpenCV's DNN module. The project utilizes a pre-trained Caffe model for face detection and a trained PyTorch model using mobilenet_v2 model to classify gender. The dataset is from saadpd's Kaggle (Men-Women Classification). The application captures video from the webcam, detects faces, and classifies the gender of the detected faces, displaying the results and confidence in photo using streamlit to deploy the web application.
 
 ## ✨ Output Examples in Code
 
@@ -114,7 +114,7 @@ run this file for webcam detection = gender_classification_cv.ipynb
 </ul>
 
 ```cmd
-streamlit -m streamlit run gender_app.py
+python -m streamlit run gender_app.py
 ```
 
 ---
@@ -130,7 +130,7 @@ The dataset used in this project is the **Men and Women Classification Dataset**
 
 ## 📄 License 
 
-This project is open source and available under the MIT License.
+This project is open source and available under the [MIT License](LICENSE).
 
 ---
 

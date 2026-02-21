@@ -13,8 +13,8 @@ from collections import deque
 
 # 1. Streamlit Page Config
 st.set_page_config(page_title="Gender Classification", page_icon="🧑‍🤝‍🧑")
-st.title("Live Gender Classification with Deep Learning")
-st.write("Real-time face detection and gender recognition system using Deep Learning technique. Built with PyTorch, and OpenCV. Powered by Streamlit for an interactive experience. Please ensure you have a webcam connected and the required model file in the same directory. The model OpenCV Face Detection Model are from OpenCV's GitHub repository (DNN-based face detector model files), and the gender classification model is a MobileNetV2 trained on a dataset of men and women. The dataset is from saadpd Kaggle's menwomen-classification.")
+st.title("Gender Classification with Deep Learning")
+st.write("Picture face detection and gender recognition system using Deep Learning technique. Built with PyTorch, and OpenCV. Powered by Streamlit for an interactive experience. Please ensure you have a webcam connected and the required model file in the same directory. The model OpenCV Face Detection Model are from OpenCV's GitHub repository (DNN-based face detector model files), and the gender classification model is a MobileNetV2 trained on a dataset of men and women. The dataset is from saadpd Kaggle's menwomen-classification.")
 
 # 2. Load Models with Caching
 @st.cache_resource
@@ -58,29 +58,27 @@ history_length = 7
 
 # 4. UI Control
 run_camera = st.checkbox("Open Webcam")
-frame_window = st.image([]) # showing video feed in Streamlit
 
 # 5. Webcam
 if run_camera:
-    # Seperate columns for video and info
+
     col1, col2 = st.columns([3, 1])
 
     with col1:
-        frame_window = st.image([]) # Video
+        camera_image = st.camera_input("Camera")
 
     with col2:
         st.markdown("### Prediction Info")
-        info_placeholder = st.empty() # Prediction Info
+        info_placeholder = st.empty()
 
-    cap = cv2.VideoCapture(0)
     pred_history = deque(maxlen=history_length)
-    
-    while run_camera:
-        ret, frame = cap.read()
-        if not ret:
-            st.error("Can't access webcam. Please check your camera permissions.")
-            break
-            
+
+    if camera_image is not None:
+
+        # Convert to OpenCV format
+        file_bytes = np.asarray(bytearray(camera_image.read()), dtype=np.uint8)
+        frame = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+
         frame = cv2.flip(frame, 1)
         h, w = frame.shape[:2]
 
@@ -143,7 +141,7 @@ if run_camera:
 
         # change color space from BGR to RGB for Streamlit
         frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        frame_window.image(frame_rgb)
+        st.image(frame_rgb)
         
         if face_detected:
             # HTML/Markdown to format the prediction info
@@ -157,6 +155,5 @@ if run_camera:
             #### Confidence: 0.00%
             """)
             
-    cap.release()
 else:
     st.info("Please check the 'Open Webcam' checkbox to start the application. You need to move your face closer to the webcam for better detection. If you have any issues, please ensure your webcam is properly connected and permissions are granted.")
